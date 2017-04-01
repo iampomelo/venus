@@ -1,0 +1,23 @@
+{
+  "name": "venus",
+  "version": "1.0.0",
+  "description": "Sina Sport Spider",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [
+    "Sina",
+    "Sport",
+    "Spider"
+  ],
+  "author": "pomelo",
+  "license": "ISC",
+  "dependencies": {
+    "bulma": "^0.4.0",
+    "cheerio": "^0.22.0",
+    "koa": "^2.2.0",
+    "mongoose": "^4.9.2",
+    "request": "^2.81.0"
+  }
+}
