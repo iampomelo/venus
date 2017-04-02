@@ -1,33 +1,23 @@
-const request = require('request');
-const cheerio = require('cheerio');
-const save = require('./db/save');
+const Koa = require('koa');
+const app = new Koa();
+const views = require('koa-views');
+const onerror = require('koa-onerror');
+const config = require('./config');
+const router = require('./router');
+const spider = require('./spider');
 
-request('http://sports.sina.com.cn/g/premierleague/', (err, res, body)=> {
-    if (!err && res.statusCode == 200) {
-        const $ = cheerio.load(body.toString());
-        const list = [];
-        $('ul.match_news_list').each(function () {
-            $(this).children('li').each(function () {
-                const a = $(this).children('a');
-                const title = a.text().trim();
-                const link = a.attr('href');
-                if (title) {
-                    list.push({
-                        title,
-                        link
-                    });
-                }
-            });
-        });
-        (function (i) {
-            if (i === list.length) {
-                console.log('Finish get data...');
-                return;
-            }
-            const arg = arguments;
-            save(list[i]).then(()=> {
-                return arg.callee(++i);
-            });
-        })(0);
+onerror(app);
+
+app.use(views(__dirname + '/views', {
+    extension: 'hbs',
+    map: {
+        hbs: 'handlebars'
     }
-});
+}));
+app.use(router.routes());
+app.use(router.allowedMethods());
+
+// spider.run().then(()=> {
+app.listen(config.PORT);
+console.log('listening on port ' + config.PORT);
+// });
