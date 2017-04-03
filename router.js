@@ -1,8 +1,10 @@
 const Router = require('koa-router');
 const router = new Router();
+const query = require('./db/query');
 
 router.get('/', async ctx=> {
-    await ctx.render('index', {'h2': 'hehehe'});
+    const news = await query();
+    await ctx.render('index', {news});
 });
 
 module.exports = router;

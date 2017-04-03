@@ -17,4 +17,13 @@ mongoose.connection.on('disconnected', ()=> {
     console.log('Mongoose connection disconnected');
 });
 
-module.exports = mongoose;
+const NewsSchema = mongoose.Schema({
+    title: String,
+    link: String
+});
+
+const News = mongoose.model('News', NewsSchema, 'newslist');
+
+module.exports = {
+    News
+};

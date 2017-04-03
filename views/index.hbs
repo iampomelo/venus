@@ -3,8 +3,51 @@
 <head>
     <title>newslist</title>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.0/css/bulma.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        .hero {
+            margin-bottom: 1.5rem;
+        }
+
+        span.icon {
+            margin-right: .5rem;
+        }
+    </style>
 </head>
 <body>
-{{{h2}}}
+<section class="hero is-warning">
+    <div class="hero-body">
+        <div class="container">
+            <h1 class="title">
+                体育新闻
+            </h1>
+            <h2 class="subtitle">
+                英超联赛
+            </h2>
+        </div>
+    </div>
+</section>
+{{#if news}}
+<ul class="container">
+    {{#each news}}
+    <li class="notification">
+        <div class="level">
+            <div class="level-left">
+                <a class="content level-item" href="{{this.link}}">{{this.title}}</a>
+            </div>
+            <div class="level-right">
+                <div class="level-item">
+                    <span class="icon is-small"><i class="fa fa-reply"></i></span>
+                    <span class="icon is-small"><i class="fa fa-retweet"></i></span>
+                    <span class="icon is-small"><i class="fa fa-heart"></i></span>
+                </div>
+            </div>
+        </div>
+    </li>
+    {{/each}}
+</ul>
+{{/if}}
 </body>
 </html>

@@ -17,7 +17,7 @@ app.use(views(__dirname + '/views', {
 app.use(router.routes());
 app.use(router.allowedMethods());
 
-// spider.run().then(()=> {
-app.listen(config.PORT);
-console.log('listening on port ' + config.PORT);
-// });
+spider.run().then(()=> {
+    app.listen(config.PORT);
+    console.log('listening on port ' + config.PORT);
+});
